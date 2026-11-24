@@ -1,0 +1,17 @@
+# macOS system files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Editor & IDE files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Log files
+*.log
+
+# Temporary / build files
+node_modules/
+dist/
