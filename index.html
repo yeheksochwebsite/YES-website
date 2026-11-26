@@ -976,11 +976,13 @@ main{overflow-x:hidden;overflow-x:clip}
       entries.forEach(function (en) {
         if (!en.isIntersecting) return;
         io.unobserve(en.target);
-        var el = en.target, end = +el.dataset.count, suffix = el.dataset.suffix || "";
+        var el = en.target;
+        if (!el.dataset.count) return;
         var t0 = performance.now(), dur = 1600;
         var tick = function (now) {
           var p = Math.min(1, (now - t0) / dur), eased = 1 - Math.pow(1 - p, 3);
-          el.textContent = Math.round(end * eased).toLocaleString("en-IN") + suffix;
+          if (!el.dataset.count) return;
+          el.textContent = Math.round(+el.dataset.count * eased).toLocaleString("en-IN") + (el.dataset.suffix || "");
           if (p < 1) requestAnimationFrame(tick);
         };
         requestAnimationFrame(tick);
@@ -1052,4 +1054,5 @@ main{overflow-x:hidden;overflow-x:clip}
 })();
 </script>
 
+<script src="content.js" defer></script>
 </body></html>
